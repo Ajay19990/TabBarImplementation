@@ -7,35 +7,7 @@
 //
 
 import UIKit
-
-class TabBarItemViewModel: RootNavigationItemViewModel {
-    var delegate: RootNavigationItemViewModelDelegate?
-    var title: String
-    var icon: UIImage?
-    var controller: UIViewController
-    var index: Int
-    var selectedColor: UIColor = .systemPink
-    weak var itemView: RootNavigationItem?
-    
-    var isSelected: Bool? {
-        didSet {
-            itemView?.applyModel()
-        }
-    }
-    
-    init(
-        title: String,
-        icon: UIImage? = nil,
-        controller: UIViewController,
-        index: Int
-    ) {
-        self.title = title
-        self.icon = icon
-        self.controller = controller
-        self.index = index
-        self.isSelected = false
-    }
-}
+import Lottie
 
 class TabBarItemView: UIView, RootNavigationItem {
     var viewModel: RootNavigationItemViewModel
@@ -56,6 +28,16 @@ class TabBarItemView: UIView, RootNavigationItem {
     func applyModel() {
         setImage()
         setLabel()
+        setAnimationView()
+        setHidden()
+    }
+    
+    private func setHidden() {
+        if animationView == nil || viewModel.icon == nil { return }
+        if let isSelected = viewModel.isSelected {
+            imageView.isHidden = isSelected
+            animationView?.isHidden = !isSelected
+        }
     }
     
     private func setImage() {
@@ -71,6 +53,16 @@ class TabBarItemView: UIView, RootNavigationItem {
         label.textColor = viewModel.isSelected == true ? .systemPink : .label
     }
     
+    private func setAnimationView() {
+        if let animationView = animationView {
+            if viewModel.isSelected ?? false {
+                animationView.play()
+            } else {
+                animationView.stop()
+            }
+        }
+    }
+    
     private func setTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
         addGestureRecognizer(tapGesture)
@@ -80,6 +72,18 @@ class TabBarItemView: UIView, RootNavigationItem {
     private func layoutSubViews() {
         addSubview(imageView)
         addSubview(label)
+        addAnimationViewAsSubView()
+    }
+    
+    private func addAnimationViewAsSubView() {
+        if let animationUrl = viewModel.animationURL {
+            let animationView = LottieAnimationView(url: animationUrl) { _ in }
+            animationView.contentMode = .scaleAspectFit
+            animationView.loopMode = .loop
+            animationView.translatesAutoresizingMaskIntoConstraints = false
+            self.animationView = animationView
+            addSubview(animationView)
+        }
     }
     
     private func layoutConstraints() {
@@ -94,6 +98,15 @@ class TabBarItemView: UIView, RootNavigationItem {
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2)
         ])
+        
+        if let animationView = self.animationView {
+            NSLayoutConstraint.activate([
+                animationView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+                animationView.centerXAnchor.constraint(equalTo: centerXAnchor),
+                animationView.widthAnchor.constraint(equalToConstant: 30),
+                animationView.heightAnchor.constraint(equalToConstant: 30)
+            ])
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -119,4 +132,6 @@ class TabBarItemView: UIView, RootNavigationItem {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private var animationView: LottieAnimationView?
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2080459E29E417F6002E424F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2080459D29E417F6002E424F /* Lottie */; };
+		208045A029E431F5002E424F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080459F29E431F5002E424F /* TabBarController.swift */; };
+		208045A229E431FD002E424F /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208045A129E431FD002E424F /* TabBarViewModel.swift */; };
+		208045A729E43275002E424F /* TabBarItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208045A629E43275002E424F /* TabBarItemViewModel.swift */; };
+		208045A929E432D6002E424F /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208045A829E432D6002E424F /* TabBarItemView.swift */; };
 		20CE648829DC248F00A84C59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE648729DC248F00A84C59 /* AppDelegate.swift */; };
 		20CE648A29DC248F00A84C59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE648929DC248F00A84C59 /* SceneDelegate.swift */; };
 		20CE648C29DC248F00A84C59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE648B29DC248F00A84C59 /* ViewController.swift */; };
@@ -15,9 +20,7 @@
 		20CE649F29DC249000A84C59 /* TabBarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE649E29DC249000A84C59 /* TabBarTests.swift */; };
 		20CE64A929DC249000A84C59 /* TabBarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE64A829DC249000A84C59 /* TabBarUITests.swift */; };
 		20CE64AB29DC249000A84C59 /* TabBarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE64AA29DC249000A84C59 /* TabBarUITestsLaunchTests.swift */; };
-		20CE64BA29DC25B800A84C59 /* TabBarItemViewImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE64B929DC25B800A84C59 /* TabBarItemViewImpl.swift */; };
 		20CE64BC29DC25D500A84C59 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE64BB29DC25D500A84C59 /* RootNavigationController.swift */; };
-		20CE64BE29DC25F400A84C59 /* RootNavigationControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE64BD29DC25F400A84C59 /* RootNavigationControllerImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2080459F29E431F5002E424F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		208045A129E431FD002E424F /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		208045A629E43275002E424F /* TabBarItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemViewModel.swift; sourceTree = "<group>"; };
+		208045A829E432D6002E424F /* TabBarItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		20CE648429DC248F00A84C59 /* TabBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CE648729DC248F00A84C59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20CE648929DC248F00A84C59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,9 +57,7 @@
 		20CE64A429DC249000A84C59 /* TabBarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TabBarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CE64A829DC249000A84C59 /* TabBarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarUITests.swift; sourceTree = "<group>"; };
 		20CE64AA29DC249000A84C59 /* TabBarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		20CE64B929DC25B800A84C59 /* TabBarItemViewImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemViewImpl.swift; sourceTree = "<group>"; };
 		20CE64BB29DC25D500A84C59 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
-		20CE64BD29DC25F400A84C59 /* RootNavigationControllerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationControllerImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2080459E29E417F6002E424F /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +86,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		208045A329E43258002E424F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				208045A829E432D6002E424F /* TabBarItemView.swift */,
+				2080459F29E431F5002E424F /* TabBarController.swift */,
+				208045A129E431FD002E424F /* TabBarViewModel.swift */,
+				208045A629E43275002E424F /* TabBarItemViewModel.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		20CE647B29DC248F00A84C59 = {
 			isa = PBXGroup;
 			children = (
@@ -134,9 +151,8 @@
 		20CE64B729DC249A00A84C59 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				20CE64B929DC25B800A84C59 /* TabBarItemViewImpl.swift */,
 				20CE64BB29DC25D500A84C59 /* RootNavigationController.swift */,
-				20CE64BD29DC25F400A84C59 /* RootNavigationControllerImpl.swift */,
+				208045A329E43258002E424F /* TabBar */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -157,6 +173,9 @@
 			dependencies = (
 			);
 			name = TabBar;
+			packageProductDependencies = (
+				2080459D29E417F6002E424F /* Lottie */,
+			);
 			productName = TabBar;
 			productReference = 20CE648429DC248F00A84C59 /* TabBar.app */;
 			productType = "com.apple.product-type.application";
@@ -229,6 +248,9 @@
 				Base,
 			);
 			mainGroup = 20CE647B29DC248F00A84C59;
+			packageReferences = (
+				2080459C29E417F6002E424F /* XCRemoteSwiftPackageReference "lottie-spm" */,
+			);
 			productRefGroup = 20CE648529DC248F00A84C59 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -271,12 +293,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208045A229E431FD002E424F /* TabBarViewModel.swift in Sources */,
 				20CE648C29DC248F00A84C59 /* ViewController.swift in Sources */,
-				20CE64BE29DC25F400A84C59 /* RootNavigationControllerImpl.swift in Sources */,
 				20CE648829DC248F00A84C59 /* AppDelegate.swift in Sources */,
 				20CE648A29DC248F00A84C59 /* SceneDelegate.swift in Sources */,
+				208045A029E431F5002E424F /* TabBarController.swift in Sources */,
+				208045A929E432D6002E424F /* TabBarItemView.swift in Sources */,
+				208045A729E43275002E424F /* TabBarItemViewModel.swift in Sources */,
 				20CE64BC29DC25D500A84C59 /* RootNavigationController.swift in Sources */,
-				20CE64BA29DC25B800A84C59 /* TabBarItemViewImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +634,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2080459C29E417F6002E424F /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2080459D29E417F6002E424F /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2080459C29E417F6002E424F /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 20CE647C29DC248F00A84C59 /* Project object */;
 }

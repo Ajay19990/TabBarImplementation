@@ -1,31 +1,11 @@
 //
-//  RootNavigationControllerImpl.swift
+//  TabBarController.swift
 //  TabBar
 //
-//  Created by Ajay Choudhary on 04/04/23.
+//  Created by Ajay Choudhary on 10/04/23.
 //
 
 import UIKit
-
-class TabBarViewModel: RootNavigationViewModel {
-    weak var controller: RootNavigationController?
-    
-    var selectedIndex: Int = 0 {
-        didSet {
-            controller?.selectIndex(at: selectedIndex)
-        }
-    }
-    
-    var items: [RootNavigationItem] {
-        didSet {
-            controller?.applyModel()
-        }
-    }
-    
-    init(items: [RootNavigationItem]) {
-        self.items = items
-    }
-}
 
 class TabBarController: UIViewController, RootNavigationController, RootNavigationItemViewModelDelegate {
     var viewModel: RootNavigationViewModel

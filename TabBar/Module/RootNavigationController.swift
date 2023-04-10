@@ -21,6 +21,7 @@ protocol RootNavigationItemViewModel: AnyObject {
     var controller: UIViewController { get set }
     var delegate: RootNavigationItemViewModelDelegate? { get set }
     var selectedColor: UIColor { get set }
+    var animationURL: URL? { get set }
 }
 
 protocol RootNavigationItem: AnyObject, UIView {

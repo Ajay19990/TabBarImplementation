@@ -31,9 +31,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             TabBarItemView(
                 viewModel: TabBarItemViewModel(
                     title: "Home",
-                    icon: UIImage(named: "home"),
+//                    icon: UIImage(named: "home"),
                     controller: viewControllerOne,
-                    index: 0
+                    index: 0,
+                    animationURL:  URL(string: "https://assets9.lottiefiles.com/packages/lf20_jyylm3x9.json")
                 )
             ),
             TabBarItemView(
