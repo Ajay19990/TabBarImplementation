@@ -14,7 +14,12 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
     var controller: UIViewController
     var index: Int
     var selectedColor: UIColor = .systemPink
-    var animationURL: URL?
+    var animationURL: URL? {
+        didSet {
+            let itemView = itemView as? TabBarItemView
+            itemView?.setAnimationView()
+        }
+    }
     
     weak var itemView: RootNavigationItem?
     

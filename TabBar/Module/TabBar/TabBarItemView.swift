@@ -53,7 +53,13 @@ class TabBarItemView: UIView, RootNavigationItem {
         label.textColor = viewModel.isSelected == true ? .systemPink : .label
     }
     
-    private func setAnimationView() {
+    func setAnimationView() {
+        addAnimationViewAsSubView()
+        layoutAnimationView()
+        playAnimation()
+    }
+    
+    private func playAnimation() {
         if let animationView = animationView {
             if viewModel.isSelected ?? false {
                 animationView.play()
@@ -76,8 +82,12 @@ class TabBarItemView: UIView, RootNavigationItem {
     }
     
     private func addAnimationViewAsSubView() {
+        animationView?.removeFromSuperview()
+        animationView = nil
         if let animationUrl = viewModel.animationURL {
-            let animationView = LottieAnimationView(url: animationUrl) { _ in }
+            let animationView = LottieAnimationView(url: animationUrl) { [weak self] _ in
+                self?.playAnimation()
+            }
             animationView.contentMode = .scaleAspectFit
             animationView.loopMode = .loop
             animationView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,18 +97,30 @@ class TabBarItemView: UIView, RootNavigationItem {
     }
     
     private func layoutConstraints() {
+        layoutImageView()
+        layoutLabel()
+        layoutAnimationView()
+    }
+    
+    private func layoutImageView() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.widthAnchor.constraint(equalToConstant: 30),
-            imageView.heightAnchor.constraint(equalToConstant: 30),
-            
+            imageView.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    private func layoutLabel() {
+        NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 4),
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2)
         ])
-        
+    }
+    
+    private func layoutAnimationView() {
         if let animationView = self.animationView {
             NSLayoutConstraint.activate([
                 animationView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
