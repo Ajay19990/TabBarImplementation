@@ -35,7 +35,8 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
         controller: UIViewController,
         index: Int,
         animationURL: URL? = nil,
-        selectedColor: UIColor? = nil
+        selectedColor: UIColor? = nil,
+        isSelected: Bool? = nil
     ) {
         self.title = title
         self.icon = icon
@@ -44,5 +45,6 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
         self.isSelected = false
         self.animationURL = animationURL
         self.selectedColor = selectedColor ?? .systemPink
+        self.isSelected = isSelected
     }
 }

@@ -34,7 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                    icon: UIImage(named: "home"),
                     controller: viewControllerOne,
                     index: 0,
-                    animationURL:  URL(string: "https://assets9.lottiefiles.com/packages/lf20_jyylm3x9.json")
+                    animationURL:  URL(string: "https://assets9.lottiefiles.com/packages/lf20_jyylm3x9.json"),
+                    isSelected: true
                 )
             ),
             TabBarItemView(

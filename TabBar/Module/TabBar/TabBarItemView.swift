@@ -152,6 +152,7 @@ class TabBarItemView: UIView, RootNavigationItem {
         let label = UILabel()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 12)
         return label
     }()
     
