@@ -13,7 +13,7 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
     var icon: UIImage?
     var controller: UIViewController
     var index: Int
-    var selectedColor: UIColor = .systemPink
+    var selectedColor: UIColor
     var animationURL: URL? {
         didSet {
             let itemView = itemView as? TabBarItemView
@@ -34,7 +34,8 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
         icon: UIImage? = nil,
         controller: UIViewController,
         index: Int,
-        animationURL: URL? = nil
+        animationURL: URL? = nil,
+        selectedColor: UIColor? = nil
     ) {
         self.title = title
         self.icon = icon
@@ -42,5 +43,6 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
         self.index = index
         self.isSelected = false
         self.animationURL = animationURL
+        self.selectedColor = selectedColor ?? .systemPink
     }
 }
