@@ -49,18 +49,19 @@ class TabBarController: UIViewController, RootNavigationController, RootNavigati
     
     private func removeAllControllers() {
         for item in viewModel.items {
-            let viewController = item.viewModel.controller
-            viewController.removeFromParent()
+            let viewController = viewModel.viewControllers?[guarded: item.viewModel.index]
+            viewController?.removeFromParent()
         }
         childControllers = []
     }
     
     private func setupChildControllers() {
         for (index, item) in viewModel.items.enumerated() {
-            let viewController = item.viewModel.controller
-            mainStackView.addArrangedSubview(viewController.view)
-            addChild(viewController)
-            childControllers.append(viewController)
+            if let viewController = viewModel.viewControllers?[guarded: item.viewModel.index] {
+                mainStackView.addArrangedSubview(viewController.view)
+                addChild(viewController)
+                childControllers.append(viewController)
+            }
             
             item.viewModel.delegate = self
             item.viewModel.index = index
@@ -124,4 +125,14 @@ class TabBarController: UIViewController, RootNavigationController, RootNavigati
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+}
+
+
+extension Array {
+    subscript(guarded idx: Int) -> Element? {
+        guard (startIndex..<endIndex).contains(idx) else {
+            return nil
+        }
+        return self[idx]
+    }
 }

@@ -17,8 +17,7 @@ protocol RootNavigationItemViewModel: AnyObject {
     var icon: UIImage? { get set }
     var isSelected: Bool? { get set }
     var itemView: RootNavigationItem? { get set }
-    
-    var controller: UIViewController { get set }
+
     var delegate: RootNavigationItemViewModelDelegate? { get set }
     var selectedColor: UIColor { get set }
     var animationURL: URL? { get set }
@@ -34,6 +33,7 @@ protocol RootNavigationViewModel {
     var controller: RootNavigationController? { get set }
     var selectedIndex: Int { get set }
     var items: [RootNavigationItem] { get set }
+    var viewControllers: [UIViewController]? { get set }
 }
 
 protocol RootNavigationController: AnyObject, UIViewController {

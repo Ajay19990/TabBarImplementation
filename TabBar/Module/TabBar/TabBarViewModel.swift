@@ -5,7 +5,7 @@
 //  Created by Ajay Choudhary on 10/04/23.
 //
 
-import Foundation
+import UIKit
 
 class TabBarViewModel: RootNavigationViewModel {
     weak var controller: RootNavigationController?
@@ -22,7 +22,17 @@ class TabBarViewModel: RootNavigationViewModel {
         }
     }
     
-    init(items: [RootNavigationItem]) {
+    var viewControllers: [UIViewController]? {
+        didSet {
+            controller?.applyModel()
+        }
+    }
+    
+    init(
+        items: [RootNavigationItem],
+        viewControllers: [UIViewController]? = nil
+    ) {
         self.items = items
+        self.viewControllers = viewControllers
     }
 }

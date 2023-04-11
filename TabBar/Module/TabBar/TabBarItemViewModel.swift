@@ -11,7 +11,6 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
     var delegate: RootNavigationItemViewModelDelegate?
     var title: String
     var icon: UIImage?
-    var controller: UIViewController
     var index: Int
     var selectedColor: UIColor
     var animationURL: URL? {
@@ -32,7 +31,6 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
     init(
         title: String,
         icon: UIImage? = nil,
-        controller: UIViewController,
         index: Int,
         animationURL: URL? = nil,
         selectedColor: UIColor? = nil,
@@ -40,7 +38,6 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
     ) {
         self.title = title
         self.icon = icon
-        self.controller = controller
         self.index = index
         self.isSelected = false
         self.animationURL = animationURL

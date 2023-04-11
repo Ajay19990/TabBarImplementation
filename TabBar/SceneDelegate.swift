@@ -32,7 +32,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 viewModel: TabBarItemViewModel(
                     title: "Home",
 //                    icon: UIImage(named: "home"),
-                    controller: viewControllerOne,
                     index: 0,
                     animationURL:  URL(string: "https://assets9.lottiefiles.com/packages/lf20_jyylm3x9.json"),
                     isSelected: true
@@ -42,13 +41,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 viewModel: TabBarItemViewModel(
                     title: "Away",
                     icon: UIImage(named: "envelope"),
-                    controller: viewControllerTwo,
                     index: 1
                 )
             ),
         ]
         
-        let tabBarViewModel = TabBarViewModel(items: items)
+        let tabBarViewModel = TabBarViewModel(
+            items: items,
+            viewControllers: [viewControllerOne, viewControllerTwo]
+        )
         let tabBarController = TabBarController(viewModel: tabBarViewModel)
         tabBarViewModel.controller = tabBarController
         return tabBarController
