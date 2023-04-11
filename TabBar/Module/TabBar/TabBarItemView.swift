@@ -55,7 +55,7 @@ class TabBarItemView: UIView, RootNavigationItem {
     
     func setAnimationView() {
         addAnimationViewAsSubView()
-        layoutAnimationView()
+        layoutAnimationViewConstraints()
         playAnimation()
     }
     
