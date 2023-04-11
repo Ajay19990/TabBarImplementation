@@ -97,12 +97,12 @@ class TabBarItemView: UIView, RootNavigationItem {
     }
     
     private func layoutConstraints() {
-        layoutImageView()
-        layoutLabel()
-        layoutAnimationView()
+        layoutImageViewConstraints()
+        layoutLabelConstraints()
+        layoutAnimationViewConstraints()
     }
     
-    private func layoutImageView() {
+    private func layoutImageViewConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -111,7 +111,7 @@ class TabBarItemView: UIView, RootNavigationItem {
         ])
     }
     
-    private func layoutLabel() {
+    private func layoutLabelConstraints() {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 4),
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
@@ -120,7 +120,7 @@ class TabBarItemView: UIView, RootNavigationItem {
         ])
     }
     
-    private func layoutAnimationView() {
+    private func layoutAnimationViewConstraints() {
         if let animationView = self.animationView {
             NSLayoutConstraint.activate([
                 animationView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
