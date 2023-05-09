@@ -7,7 +7,10 @@
 
 import UIKit
 
-class TabBarController: UIViewController, RootNavigationController, RootNavigationItemViewModelDelegate {
+class TabBarController:
+    UIViewController,
+    RootNavigationController,
+    RootNavigationItemViewModelDelegate {
     var viewModel: RootNavigationViewModel
 
     private var childControllers = [UIViewController]()
@@ -65,7 +68,7 @@ class TabBarController: UIViewController, RootNavigationController, RootNavigati
             
             item.viewModel.delegate = self
             item.viewModel.index = index
-            item.viewModel.itemView = item
+            item.viewModel.itemViewActions = item
             tabBarItemStackView.addArrangedSubview(item)
         }
     }

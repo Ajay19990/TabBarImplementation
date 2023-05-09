@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2069F4CA2A09E92D00D03506 /* RootNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2069F4C92A09E92D00D03506 /* RootNavigationItem.swift */; };
 		2080459E29E417F6002E424F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2080459D29E417F6002E424F /* Lottie */; };
 		208045A029E431F5002E424F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2080459F29E431F5002E424F /* TabBarController.swift */; };
 		208045A229E431FD002E424F /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208045A129E431FD002E424F /* TabBarViewModel.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2069F4C92A09E92D00D03506 /* RootNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationItem.swift; sourceTree = "<group>"; };
 		2080459F29E431F5002E424F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		208045A129E431FD002E424F /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		208045A629E43275002E424F /* TabBarItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemViewModel.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		20CE64B729DC249A00A84C59 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				2069F4C92A09E92D00D03506 /* RootNavigationItem.swift */,
 				20CE64BB29DC25D500A84C59 /* RootNavigationController.swift */,
 				208045A329E43258002E424F /* TabBar */,
 			);
@@ -301,6 +304,7 @@
 				208045A929E432D6002E424F /* TabBarItemView.swift in Sources */,
 				208045A729E43275002E424F /* TabBarItemViewModel.swift in Sources */,
 				20CE64BC29DC25D500A84C59 /* RootNavigationController.swift in Sources */,
+				2069F4CA2A09E92D00D03506 /* RootNavigationItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

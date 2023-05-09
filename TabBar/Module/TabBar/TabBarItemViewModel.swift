@@ -15,16 +15,16 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
     var selectedColor: UIColor
     var animationURL: URL? {
         didSet {
-            let itemView = itemView as? TabBarItemView
-            itemView?.setAnimationView()
+            let itemViewActions = itemViewActions as? TabBarItemView
+            itemViewActions?.setAnimationView()
         }
     }
     
-    weak var itemView: RootNavigationItem?
+    weak var itemViewActions: RootNavigationItemActions?
     
     var isSelected: Bool? {
         didSet {
-            itemView?.applyModel()
+            itemViewActions?.applyModel()
         }
     }
     

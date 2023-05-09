@@ -8,23 +8,23 @@
 import UIKit
 
 class TabBarViewModel: RootNavigationViewModel {
-    weak var controller: RootNavigationController?
+    weak var controllerActions: RootNavigationControllerActions?
     
     var selectedIndex: Int = 0 {
         didSet {
-            controller?.selectIndex(at: selectedIndex)
+            controllerActions?.selectIndex(at: selectedIndex)
         }
     }
     
     var items: [RootNavigationItem] {
         didSet {
-            controller?.applyModel()
+            controllerActions?.applyModel()
         }
     }
     
     var viewControllers: [UIViewController]? {
         didSet {
-            controller?.applyModel()
+            controllerActions?.applyModel()
         }
     }
     

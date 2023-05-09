@@ -51,7 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             viewControllers: [viewControllerOne, viewControllerTwo]
         )
         let tabBarController = TabBarController(viewModel: tabBarViewModel)
-        tabBarViewModel.controller = tabBarController
+        tabBarViewModel.controllerActions = tabBarController
         return tabBarController
     }
 
