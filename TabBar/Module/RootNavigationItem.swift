@@ -14,12 +14,12 @@ protocol RootNavigationItemViewModelDelegate {
 protocol RootNavigationItemViewModel: AnyObject {
     var index: Int { get set }
     var title: String { get set }
-    var icon: UIImage? { get set }
+    var image: UIImage? { get set }
     var isSelected: Bool? { get set }
     var itemViewActions: RootNavigationItemActions? { get set }
 
     var delegate: RootNavigationItemViewModelDelegate? { get set }
-    var selectedColor: UIColor { get set }
+    var selectedImage: UIImage? { get set }
     var animationURL: URL? { get set }
 }
 

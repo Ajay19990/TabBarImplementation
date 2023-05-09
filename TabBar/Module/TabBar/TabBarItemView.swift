@@ -33,7 +33,7 @@ class TabBarItemView: UIView, RootNavigationItem {
     }
     
     private func setHidden() {
-        if animationView == nil || viewModel.icon == nil { return }
+        if animationView == nil || (viewModel.image == nil && viewModel.selectedImage == nil) { return }
         if let isSelected = viewModel.isSelected {
             imageView.isHidden = isSelected
             animationView?.isHidden = !isSelected
@@ -41,10 +41,16 @@ class TabBarItemView: UIView, RootNavigationItem {
     }
     
     private func setImage() {
-        if viewModel.isSelected ?? false {
-            imageView.image = viewModel.icon?.withTintColor(viewModel.selectedColor)
+        if let selectedImage = viewModel.selectedImage, viewModel.isSelected ?? false {
+            imageView.image = selectedImage
+        } else if viewModel.isSelected == false && viewModel.image == nil && viewModel.selectedImage != nil {
+            imageView.image = viewModel.selectedImage
         } else {
-            imageView.image = viewModel.icon
+            imageView.image = viewModel.image
+        }
+        
+        if viewModel.isSelected == true && viewModel.selectedImage == nil {
+            viewModel.selectedImage = viewModel.image
         }
     }
     

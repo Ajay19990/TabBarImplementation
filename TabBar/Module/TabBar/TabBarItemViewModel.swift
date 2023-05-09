@@ -10,9 +10,9 @@ import UIKit
 class TabBarItemViewModel: RootNavigationItemViewModel {
     var delegate: RootNavigationItemViewModelDelegate?
     var title: String
-    var icon: UIImage?
+    var image: UIImage?
     var index: Int
-    var selectedColor: UIColor
+    var selectedImage: UIImage?
     var animationURL: URL? {
         didSet {
             let itemViewActions = itemViewActions as? TabBarItemView
@@ -30,18 +30,18 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
     
     init(
         title: String,
-        icon: UIImage? = nil,
+        image: UIImage? = nil,
         index: Int,
         animationURL: URL? = nil,
-        selectedColor: UIColor? = nil,
+        selectedImage: UIImage? = nil,
         isSelected: Bool? = nil
     ) {
         self.title = title
-        self.icon = icon
+        self.image = image
         self.index = index
         self.isSelected = false
         self.animationURL = animationURL
-        self.selectedColor = selectedColor ?? .systemPink
+        self.selectedImage = selectedImage
         self.isSelected = isSelected
     }
 }
