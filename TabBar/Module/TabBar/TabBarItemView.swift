@@ -41,17 +41,19 @@ class TabBarItemView: UIView, RootNavigationItem {
     }
     
     private func setImage() {
-        if let selectedImage = viewModel.selectedImage, viewModel.isSelected ?? false {
-            imageView.image = selectedImage
-        } else if viewModel.isSelected == false && viewModel.image == nil && viewModel.selectedImage != nil {
+        if shouldUseSelectedImage() || shouldUseSelectedImageAsFallbackImage() {
             imageView.image = viewModel.selectedImage
         } else {
             imageView.image = viewModel.image
         }
-        
-        if viewModel.isSelected == true && viewModel.selectedImage == nil {
-            viewModel.selectedImage = viewModel.image
-        }
+    }
+    
+    func shouldUseSelectedImage() -> Bool {
+        viewModel.shouldUseSelectedImage()
+    }
+
+    func shouldUseSelectedImageAsFallbackImage() -> Bool {
+        viewModel.shouldUseSelectedImageAsFallbackImage()
     }
     
     private func setLabel() {

@@ -21,6 +21,9 @@ protocol RootNavigationItemViewModel: AnyObject {
     var delegate: RootNavigationItemViewModelDelegate? { get set }
     var selectedImage: UIImage? { get set }
     var animationURL: URL? { get set }
+    
+    func shouldUseSelectedImage() -> Bool
+    func shouldUseSelectedImageAsFallbackImage() -> Bool
 }
 
 protocol RootNavigationItem: RootNavigationItemActions, UIView {

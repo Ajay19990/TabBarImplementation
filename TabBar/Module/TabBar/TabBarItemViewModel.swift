@@ -44,4 +44,12 @@ class TabBarItemViewModel: RootNavigationItemViewModel {
         self.selectedImage = selectedImage
         self.isSelected = isSelected
     }
+    
+    func shouldUseSelectedImage() -> Bool {
+        selectedImage != nil && (isSelected ?? false)
+    }
+
+    func shouldUseSelectedImageAsFallbackImage() -> Bool {
+        isSelected == false && image == nil && selectedImage != nil
+    }
 }
