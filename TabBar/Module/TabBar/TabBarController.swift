@@ -35,7 +35,7 @@ class TabBarController:
     }
     
     func applyModel() {
-        removeAllSubViews(from: mainStackView)
+        removeAllSubViews(from: controllerStackView)
         removeAllSubViews(from: tabBarItemStackView)
         removeAllControllers()
         
@@ -45,7 +45,7 @@ class TabBarController:
     
     private func removeAllSubViews(from stackView: UIStackView) {
         for view in stackView.arrangedSubviews {
-            mainStackView.removeArrangedSubview(view)
+            controllerStackView.removeArrangedSubview(view)
             view.removeFromSuperview()
         }
     }
@@ -61,7 +61,7 @@ class TabBarController:
     private func setupChildControllers() {
         for (index, item) in viewModel.items.enumerated() {
             if let viewController = viewModel.viewControllers?[guarded: item.viewModel.index] {
-                mainStackView.addArrangedSubview(viewController.view)
+                controllerStackView.addArrangedSubview(viewController.view)
                 controllers.append(viewController)
             }
             
@@ -77,7 +77,7 @@ class TabBarController:
         let viewController = controllers[index]
         removeChildren()
         addChild(viewController)
-        mainStackView.arrangedSubviews.forEach { $0.isHidden = $0 != viewController.view }
+        controllerStackView.arrangedSubviews.forEach { $0.isHidden = $0 != viewController.view }
     }
     
     func removeChildren() {
@@ -96,37 +96,39 @@ class TabBarController:
     }
     
     func hideTabBar() {
-        
+        UIView.animate(withDuration: 0.2) {
+            self.tabBarItemStackView.isHidden = true
+            self.mainStackView.layoutIfNeeded()
+        }
     }
     
     func showTabBar() {
-        
+        UIView.animate(withDuration: 0.2) {
+            self.tabBarItemStackView.isHidden = false
+            self.mainStackView.layoutIfNeeded()
+        }
     }
     
     // MARK: - SetupUI
     
     private func layoutSubViews() {
         view.addSubview(mainStackView)
-        view.addSubview(tabBarItemStackView)
+        mainStackView.addArrangedSubview(controllerStackView)
+        mainStackView.addArrangedSubview(tabBarItemStackView)
     }
     
     private func layoutConstraints() {
         NSLayoutConstraint.activate([
-            tabBarItemStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tabBarItemStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tabBarItemStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tabBarItemStackView.heightAnchor.constraint(equalToConstant: 65),
-            
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: tabBarItemStackView.topAnchor),
-            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
     // MARK: - Views
     
-    private let mainStackView: UIStackView = {
+    private let controllerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .fill
@@ -143,8 +145,16 @@ class TabBarController:
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    
+    private let mainStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
 }
-
 
 extension Array {
     subscript(guarded idx: Int) -> Element? {
