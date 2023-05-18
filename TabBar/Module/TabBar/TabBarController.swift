@@ -13,7 +13,7 @@ class TabBarController:
     RootNavigationItemViewModelDelegate {
     var viewModel: RootNavigationViewModel
 
-    private var childControllers = [UIViewController]()
+    private var controllers = [UIViewController]()
     private var viewModels: [RootNavigationItemViewModel] = []
     
     init(viewModel: RootNavigationViewModel) {
@@ -55,15 +55,14 @@ class TabBarController:
             let viewController = viewModel.viewControllers?[guarded: item.viewModel.index]
             viewController?.removeFromParent()
         }
-        childControllers = []
+        controllers = []
     }
     
     private func setupChildControllers() {
         for (index, item) in viewModel.items.enumerated() {
             if let viewController = viewModel.viewControllers?[guarded: item.viewModel.index] {
                 mainStackView.addArrangedSubview(viewController.view)
-                addChild(viewController)
-                childControllers.append(viewController)
+                controllers.append(viewController)
             }
             
             item.viewModel.delegate = self
@@ -74,9 +73,17 @@ class TabBarController:
     }
     
     func selectIndex(at index: Int) {
-        guard index >= 0 && index < childControllers.count else { return }
-        let viewController = childControllers[index]
+        guard index >= 0 && index < controllers.count else { return }
+        let viewController = controllers[index]
+        removeChildren()
+        addChild(viewController)
         mainStackView.arrangedSubviews.forEach { $0.isHidden = $0 != viewController.view }
+    }
+    
+    func removeChildren() {
+        for childViewController in children {
+            childViewController.removeFromParent()
+        }
     }
     
     // MARK: - RootNavigationItemViewModelDelegate
@@ -86,6 +93,14 @@ class TabBarController:
         self.viewModel.items.forEach { item in
             item.viewModel.isSelected = (item.viewModel.index == viewModel.index)
         }
+    }
+    
+    func hideTabBar() {
+        
+    }
+    
+    func showTabBar() {
+        
     }
     
     // MARK: - SetupUI

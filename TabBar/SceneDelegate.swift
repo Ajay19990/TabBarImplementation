@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func getTabBar() -> RootNavigationController {
-        let viewControllerOne = ViewControllerOne()
+        let viewControllerOne = UINavigationController(rootViewController: ViewControllerOne()) 
         let viewControllerTwo = ViewControllerTwo()
         
         let items = [
@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     title: "Home",
                     image: UIImage(named: "home"),
                     index: 0,
-                    animationURL:  URL(string: "https://assets9.lottiefiles.com/packages/lf20_jyylm3x9.json"),
+//                    animationURL:  URL(string: "https://assets9.lottiefiles.com/packages/lf20_jyylm3x9.json"),
                     selectedImage: UIImage(named: "home_filled"),
                     isSelected: true
                 )
