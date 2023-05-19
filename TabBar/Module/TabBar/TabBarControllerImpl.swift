@@ -7,14 +7,17 @@
 
 import UIKit
 
-class TabBarController:
+class TabBarControllerImpl:
     UIViewController,
-    RootNavigationController,
+    RootTabBarController,
     RootNavigationItemViewModelDelegate {
+    var isTabBarHidden: Bool?
+    
     var viewModel: RootNavigationViewModel
 
     private var controllers = [UIViewController]()
     private var viewModels: [RootNavigationItemViewModel] = []
+    var delegate: RootTabBarDelegate?
     
     init(viewModel: RootNavigationViewModel) {
         self.viewModel = viewModel
@@ -75,6 +78,8 @@ class TabBarController:
     func selectIndex(at index: Int) {
         guard index >= 0 && index < controllers.count else { return }
         let viewController = controllers[index]
+        
+        delegate?.tabBarController(self, didSelect: viewController)
         removeChildren()
         addChild(viewController)
         controllerStackView.arrangedSubviews.forEach { $0.isHidden = $0 != viewController.view }
@@ -93,6 +98,10 @@ class TabBarController:
         self.viewModel.items.forEach { item in
             item.viewModel.isSelected = (item.viewModel.index == viewModel.index)
         }
+    }
+    
+    func shouldSelect(viewModel: RootNavigationItemViewModel) -> Bool {
+        delegate?.tabBarController(self, shouldSelect: self.viewModel.viewControllers?[viewModel.index]) ?? true
     }
     
     func hideTabBar() {

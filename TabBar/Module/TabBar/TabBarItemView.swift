@@ -67,6 +67,10 @@ class TabBarItemView: UIView, RootNavigationItem {
         playAnimation()
     }
     
+    func setTextAttributes(_ attributes: [NSAttributedString.Key: Any]) {
+        label.attributedText = NSAttributedString(string: label.text ?? "", attributes: attributes)
+    }
+    
     private func playAnimation() {
         if let animationView = animationView {
             if viewModel.isSelected ?? false {
@@ -144,6 +148,9 @@ class TabBarItemView: UIView, RootNavigationItem {
     }
     
     @objc private func didTap() {
+        if viewModel.delegate?.shouldSelect(viewModel: viewModel) == false {
+            return
+        }
         viewModel.delegate?.didSelect(viewModel: viewModel)
     }
     

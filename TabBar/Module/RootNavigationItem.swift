@@ -9,6 +9,7 @@ import UIKit
 
 protocol RootNavigationItemViewModelDelegate {
     func didSelect(viewModel: RootNavigationItemViewModel)
+    func shouldSelect(viewModel: RootNavigationItemViewModel) -> Bool
 }
 
 protocol RootNavigationItemViewModel: AnyObject {
@@ -28,6 +29,7 @@ protocol RootNavigationItemViewModel: AnyObject {
 
 protocol RootNavigationItem: RootNavigationItemActions, UIView {
     var viewModel: RootNavigationItemViewModel { get }
+    func setTextAttributes(_ attributes: [NSAttributedString.Key: Any])
 }
 
 protocol RootNavigationItemActions: AnyObject {

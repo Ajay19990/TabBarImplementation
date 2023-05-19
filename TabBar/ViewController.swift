@@ -76,7 +76,7 @@ class NestedViewControllerTwo: UIViewController {
         view.backgroundColor = .yellow
         
         let viewController = navigationController?.viewControllers.first
-        if let tabBarController = viewController?.parent?.parent as? TabBarController {
+        if let tabBarController = navigationController?.parent as? RootTabBarController {
             tabBarController.hideTabBar()
         }
     }

@@ -24,7 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func getTabBar() -> RootNavigationController {
-        let viewControllerOne = UINavigationController(rootViewController: ViewControllerOne()) 
+        let viewControllerOne = ViewControllerOne()
+        let viewControllerOneNavVC = UINavigationController(rootViewController: viewControllerOne)
         let viewControllerTwo = ViewControllerTwo()
         
         let items = [
@@ -50,9 +51,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarViewModel = TabBarViewModel(
             items: items,
-            viewControllers: [viewControllerOne, viewControllerTwo]
+            viewControllers: [viewControllerOneNavVC, viewControllerTwo]
         )
-        let tabBarController = TabBarController(viewModel: tabBarViewModel)
+        let tabBarController = TabBarControllerImpl(viewModel: tabBarViewModel)
         tabBarViewModel.controllerActions = tabBarController
         return tabBarController
     }
