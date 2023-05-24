@@ -33,7 +33,6 @@ class TabBarControllerImpl:
         view.backgroundColor = .white
         layoutSubViews()
         layoutConstraints()
-        setupChildControllers()
         applyModel()
     }
     
@@ -83,6 +82,16 @@ class TabBarControllerImpl:
         removeChildren()
         addChild(viewController)
         controllerStackView.arrangedSubviews.forEach { $0.isHidden = $0 != viewController.view }
+
+        updateIsSelectedForTabBarItems()
+    }
+    
+    func updateIsSelectedForTabBarItems() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            self.viewModel.items.forEach { item in
+                item.viewModel.isSelected = (item.viewModel.index == self.viewModel.selectedIndex)
+            }
+        }
     }
     
     func removeChildren() {
@@ -94,10 +103,10 @@ class TabBarControllerImpl:
     // MARK: - RootNavigationItemViewModelDelegate
     
     func didSelect(viewModel: RootNavigationItemViewModel) {
-        self.viewModel.selectedIndex = viewModel.index
         self.viewModel.items.forEach { item in
             item.viewModel.isSelected = (item.viewModel.index == viewModel.index)
         }
+        self.viewModel.selectedIndex = viewModel.index
     }
     
     func shouldSelect(viewModel: RootNavigationItemViewModel) -> Bool {

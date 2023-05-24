@@ -29,10 +29,15 @@ class ViewControllerOne: UIViewController {
     }
     
     @objc func tapped() {
-        navigationController?.pushViewController(
-            NestedViewControllerOne(),
-            animated: true
-        )
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let delegate = windowScene.delegate as? SceneDelegate {
+            guard let tabBarController = delegate.window?.rootViewController as? TabBarControllerImpl else { return }
+            tabBarController.viewModel.selectedIndex = 1
+        }
+//        navigationController?.pushViewController(
+//            NestedViewControllerOne(),
+//            animated: true
+//        )
     }
 }
 
