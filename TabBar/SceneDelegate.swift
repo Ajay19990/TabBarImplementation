@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
     }
     
-    func getTabBar() -> RootNavigationController {
+    func getTabBar() -> RootNavController {
         let viewControllerOne = ViewControllerOne()
         let viewControllerOneNavVC = UINavigationController(rootViewController: viewControllerOne)
         let viewControllerTwo = ViewControllerTwo()

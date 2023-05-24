@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol RootTabBarDelegate {
-    func tabBarController(_ tabBarController: RootTabBarController, shouldSelect viewController: UIViewController?) -> Bool
-    func tabBarController(_ tabBarController: RootTabBarController, didSelect viewController: UIViewController?)
+protocol RootNavigationDelegate {
+    func rootNavigationController(_ rootNavigationController: RootNavController, shouldSelect viewController: UIViewController?) -> Bool
+    func rootNavigationController(_ rootNavigationController: RootNavController, didSelect viewController: UIViewController?)
 }
 
 protocol RootNavigationViewModel {
@@ -19,16 +19,13 @@ protocol RootNavigationViewModel {
     var viewControllers: [UIViewController]? { get set }
 }
 
-protocol RootTabBarController: UIViewController, RootNavigationController {
-    var delegate: RootTabBarDelegate? { get set }
-    
-    var isTabBarHidden: Bool? { get set }
-    func hideTabBar()
-    func showTabBar()
-}
-
-protocol RootNavigationController: RootNavigationControllerActions, UIViewController {
+protocol RootNavController: RootNavigationControllerActions, UIViewController {
     var viewModel: RootNavigationViewModel { get }
+    var delegate: RootNavigationDelegate? { get set }
+    
+    var isMenuBarHidden: Bool? { get set }
+    func hideMenuBar()
+    func showMenuBar()
 }
 
 protocol RootNavigationControllerActions: AnyObject {

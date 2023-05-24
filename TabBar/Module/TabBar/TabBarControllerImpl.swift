@@ -9,15 +9,15 @@ import UIKit
 
 class TabBarControllerImpl:
     UIViewController,
-    RootTabBarController,
+    RootNavController,
     RootNavigationItemViewModelDelegate {
-    var isTabBarHidden: Bool?
+    var isMenuBarHidden: Bool?
     
     var viewModel: RootNavigationViewModel
 
     private var controllers = [UIViewController]()
     private var viewModels: [RootNavigationItemViewModel] = []
-    var delegate: RootTabBarDelegate?
+    var delegate: RootNavigationDelegate?
     
     init(viewModel: RootNavigationViewModel) {
         self.viewModel = viewModel
@@ -79,7 +79,7 @@ class TabBarControllerImpl:
         guard index >= 0 && index < controllers.count else { return }
         let viewController = controllers[index]
         
-        delegate?.tabBarController(self, didSelect: viewController)
+        delegate?.rootNavigationController(self, didSelect: viewController)
         removeChildren()
         addChild(viewController)
         controllerStackView.arrangedSubviews.forEach { $0.isHidden = $0 != viewController.view }
@@ -101,17 +101,17 @@ class TabBarControllerImpl:
     }
     
     func shouldSelect(viewModel: RootNavigationItemViewModel) -> Bool {
-        delegate?.tabBarController(self, shouldSelect: self.viewModel.viewControllers?[viewModel.index]) ?? true
+        delegate?.rootNavigationController(self, shouldSelect: self.viewModel.viewControllers?[viewModel.index]) ?? true
     }
     
-    func hideTabBar() {
+    func hideMenuBar() {
         UIView.animate(withDuration: 0.2) {
             self.tabBarItemStackView.isHidden = true
             self.mainStackView.layoutIfNeeded()
         }
     }
     
-    func showTabBar() {
+    func showMenuBar() {
         UIView.animate(withDuration: 0.2) {
             self.tabBarItemStackView.isHidden = false
             self.mainStackView.layoutIfNeeded()

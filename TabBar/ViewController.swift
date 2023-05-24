@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class ViewControllerOne: UIViewController {
     override func viewDidLoad() {
@@ -76,8 +77,8 @@ class NestedViewControllerTwo: UIViewController {
         view.backgroundColor = .yellow
         
         let viewController = navigationController?.viewControllers.first
-        if let tabBarController = navigationController?.parent as? RootTabBarController {
-            tabBarController.hideTabBar()
+        if let tabBarController = navigationController?.parent as? RootNavController {
+            tabBarController.hideMenuBar()
         }
     }
     
