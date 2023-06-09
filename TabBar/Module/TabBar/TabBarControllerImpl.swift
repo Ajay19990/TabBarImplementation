@@ -9,7 +9,7 @@ import UIKit
 
 class TabBarControllerImpl:
     UIViewController,
-    RootNavController,
+    RootNavigationControllerActions,
     RootNavigationItemViewModelDelegate {
     var isMenuBarHidden: Bool?
     
@@ -53,24 +53,26 @@ class TabBarControllerImpl:
     }
     
     private func removeAllControllers() {
-        for item in viewModel.items {
-            let viewController = viewModel.viewControllers?[guarded: item.viewModel.index]
+        for itemViewModel in viewModel.itemViewModels {
+            let viewController = viewModel.viewControllers?[guarded: itemViewModel.index]
             viewController?.removeFromParent()
         }
         controllers = []
     }
     
     private func setupChildControllers() {
-        for (index, item) in viewModel.items.enumerated() {
-            if let viewController = viewModel.viewControllers?[guarded: item.viewModel.index] {
+        for (index, itemViewModel) in viewModel.itemViewModels.enumerated() {
+            if let viewController = viewModel.viewControllers?[guarded: itemViewModel.index] {
                 controllerStackView.addArrangedSubview(viewController.view)
                 controllers.append(viewController)
             }
             
-            item.viewModel.delegate = self
-            item.viewModel.index = index
-            item.viewModel.itemViewActions = item
-            tabBarItemStackView.addArrangedSubview(item)
+            itemViewModel.delegate = self
+            itemViewModel.index = index
+            
+            let itemView = TabBarItemView(viewModel: itemViewModel)
+            itemViewModel.itemViewActions = itemView
+            tabBarItemStackView.addArrangedSubview(itemView)
         }
     }
     
@@ -88,8 +90,8 @@ class TabBarControllerImpl:
     
     func updateIsSelectedForTabBarItems() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            self.viewModel.items.forEach { item in
-                item.viewModel.isSelected = (item.viewModel.index == self.viewModel.selectedIndex)
+            self.viewModel.itemViewModels.forEach { itemViewModel in
+                itemViewModel.isSelected = (itemViewModel.index == self.viewModel.selectedIndex)
             }
         }
     }
@@ -103,8 +105,8 @@ class TabBarControllerImpl:
     // MARK: - RootNavigationItemViewModelDelegate
     
     func didSelect(viewModel: RootNavigationItemViewModel) {
-        self.viewModel.items.forEach { item in
-            item.viewModel.isSelected = (item.viewModel.index == viewModel.index)
+        self.viewModel.itemViewModels.forEach { itemViewModel in
+            itemViewModel.isSelected = (itemViewModel.index == viewModel.index)
         }
         self.viewModel.selectedIndex = viewModel.index
     }

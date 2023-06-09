@@ -27,11 +27,11 @@ protocol RootNavigationItemViewModel: AnyObject {
     func shouldUseSelectedImageAsFallbackImage() -> Bool
 }
 
-protocol RootNavigationItem: RootNavigationItemActions, UIView {
+protocol RootNavigationItem: UIView {
     var viewModel: RootNavigationItemViewModel { get }
     func setTextAttributes(_ attributes: [NSAttributedString.Key: Any])
 }
 
-protocol RootNavigationItemActions: AnyObject {
+protocol RootNavigationItemActions: RootNavigationItem, AnyObject {
     func applyModel()
 }

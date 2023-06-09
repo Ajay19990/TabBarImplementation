@@ -15,11 +15,11 @@ protocol RootNavigationDelegate {
 protocol RootNavigationViewModel {
     var controllerActions: RootNavigationControllerActions? { get set }
     var selectedIndex: Int { get set }
-    var items: [RootNavigationItem] { get set }
+    var itemViewModels: [RootNavigationItemViewModel] { get set }
     var viewControllers: [UIViewController]? { get set }
 }
 
-protocol RootNavController: RootNavigationControllerActions, UIViewController {
+protocol RootNavController: UIViewController {
     var viewModel: RootNavigationViewModel { get }
     var delegate: RootNavigationDelegate? { get set }
     
@@ -28,7 +28,7 @@ protocol RootNavController: RootNavigationControllerActions, UIViewController {
     func showMenuBar()
 }
 
-protocol RootNavigationControllerActions: AnyObject {
+protocol RootNavigationControllerActions: RootNavController, AnyObject {
     func applyModel()
     func selectIndex(at index: Int)
 }

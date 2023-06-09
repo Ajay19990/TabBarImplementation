@@ -28,29 +28,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewControllerOneNavVC = UINavigationController(rootViewController: viewControllerOne)
         let viewControllerTwo = ViewControllerTwo()
         
-        let items = [
-            TabBarItemView(
-                viewModel: TabBarItemViewModel(
-                    title: "Home",
-                    image: UIImage(named: "home"),
-                    index: 0,
-//                    animationURL:  URL(string: "https://assets9.lottiefiles.com/packages/lf20_jyylm3x9.json"),
-                    selectedImage: UIImage(named: "home_filled"),
-                    isSelected: true
-                )
+        let itemViewModels = [
+            TabBarItemViewModel(
+                title: "Home",
+                image: UIImage(named: "home"),
+                index: 0,
+                //                    animationURL:  URL(string: "https://assets9.lottiefiles.com/packages/lf20_jyylm3x9.json"),
+                selectedImage: UIImage(named: "home_filled"),
+                isSelected: true
             ),
-            TabBarItemView(
-                viewModel: TabBarItemViewModel(
-                    title: "Away",
-                    image: UIImage(named: "envelope"),
-                    index: 1,
-                    selectedImage: UIImage(named: "envelope_filled")
-                )
-            ),
+            TabBarItemViewModel(
+                title: "Away",
+                image: UIImage(named: "envelope"),
+                index: 1,
+                selectedImage: UIImage(named: "envelope_filled")
+            )
         ]
         
         let tabBarViewModel = TabBarViewModel(
-            items: items,
+            itemViewModels: itemViewModels,
             viewControllers: [viewControllerOneNavVC, viewControllerTwo]
         )
         let tabBarController = TabBarControllerImpl(viewModel: tabBarViewModel)

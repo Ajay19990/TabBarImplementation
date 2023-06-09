@@ -16,7 +16,7 @@ class TabBarViewModel: RootNavigationViewModel {
         }
     }
     
-    var items: [RootNavigationItem] {
+    var itemViewModels: [RootNavigationItemViewModel] {
         didSet {
             controllerActions?.applyModel()
         }
@@ -29,10 +29,10 @@ class TabBarViewModel: RootNavigationViewModel {
     }
     
     init(
-        items: [RootNavigationItem],
+        itemViewModels: [RootNavigationItemViewModel],
         viewControllers: [UIViewController]? = nil
     ) {
-        self.items = items
+        self.itemViewModels = itemViewModels
         self.viewControllers = viewControllers
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Lottie
 
-class TabBarItemView: UIView, RootNavigationItem {
+class TabBarItemView: UIView, RootNavigationItemActions {
     var viewModel: RootNavigationItemViewModel
     
     init(viewModel: RootNavigationItemViewModel) {
